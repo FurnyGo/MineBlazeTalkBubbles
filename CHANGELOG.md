@@ -1,7 +1,6 @@
 ### Added:
-- Added max check config option
+- Added chat scale config option
 ### Fixed:
-- Fixed advancement bubble
-- Fixed command bubble
-### Changed:
 - 
+### Changed:
+- Updated to mc 1.20.6
