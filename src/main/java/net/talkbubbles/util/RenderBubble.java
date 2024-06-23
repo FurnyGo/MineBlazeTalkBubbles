@@ -24,7 +24,7 @@ import net.talkbubbles.mixin.DrawContextAccessor;
 @Environment(EnvType.CLIENT)
 public class RenderBubble {
 
-    private static final Identifier BACKGROUND = new Identifier("talkbubbles:textures/gui/background.png");
+    private static final Identifier BACKGROUND = Identifier.of("talkbubbles:textures/gui/background.png");
 
     public static void renderBubble(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, TextRenderer textRenderer, EntityRenderDispatcher entityRenderDispatcher,
             List<String> textList, int width, int height, float playerHeight, int i) {
@@ -35,7 +35,7 @@ public class RenderBubble {
 
         matrixStack.translate(0.0D, playerHeight + 0.9F + (backgroundHeight > 5 ? 0.1F : 0.0F) + TalkBubbles.CONFIG.chatHeight, 0.0D);
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(toEulerXyzDegrees(entityRenderDispatcher.getRotation()).y()));
-        matrixStack.scale(-0.025F * TalkBubbles.CONFIG.chatScale, -0.025F * TalkBubbles.CONFIG.chatScale, 0.025F);
+        matrixStack.scale(0.025F * TalkBubbles.CONFIG.chatScale, -0.025F * TalkBubbles.CONFIG.chatScale, 0.025F);
 
         Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
 
