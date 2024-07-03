@@ -22,4 +22,8 @@ public class TalkBubblesConfig implements ConfigData {
     public int maxUUIDWordCheck = 0;
     public boolean showOwnBubble = false;
 
+    public boolean getLocal = true;
+
+    public boolean getGlobal = true;
+
 }

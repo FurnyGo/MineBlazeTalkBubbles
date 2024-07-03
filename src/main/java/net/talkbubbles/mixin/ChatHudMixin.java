@@ -39,8 +39,11 @@ public class ChatHudMixin {
     @Inject(method = "Lnet/minecraft/client/gui/hud/ChatHud;addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;Lnet/minecraft/client/gui/hud/MessageIndicator;)V", at = @At("HEAD"))
     private void addMessageMixin(Text message, @Nullable MessageSignatureData signature, @Nullable MessageIndicator indicator, CallbackInfo info) {
         if (client != null && client.player != null) {
-            String detectedSenderName = extractSender(message);
-            if (!detectedSenderName.isEmpty()) {
+            String detectedSenderName = null;
+            if ((TalkBubbles.CONFIG.getLocal && message.getString().startsWith("[ʟ]")) || TalkBubbles.CONFIG.getGlobal && message.getString().startsWith("[ɢ]")) {
+                detectedSenderName = message.getSiblings().get(0).getStyle().getClickEvent().getValue().split(" ")[1];
+            }
+            if (detectedSenderName != null && client.getSocialInteractionsManager().getUuid(detectedSenderName) != Util.NIL_UUID) {
                 UUID senderUUID = this.client.getSocialInteractionsManager().getUuid(detectedSenderName);
 
                 List<AbstractClientPlayerEntity> list = client.world.getEntitiesByClass(AbstractClientPlayerEntity.class, client.player.getBoundingBox().expand(TalkBubbles.CONFIG.chatRange),
@@ -51,10 +54,11 @@ public class ChatHudMixin {
                 }
                 for (int i = 0; i < list.size(); i++)
                     if (list.get(i).getUuid().equals(senderUUID)) {
-                        String stringMessage = message.getString();
-                        stringMessage = stringMessage.replaceFirst("[\\s\\S]*" + detectedSenderName + "([^\\w§]|(§.)?)+\\s+", "");
-                        String[] string = stringMessage.split(" ");
+                        String[] string = message.getString().split("→ ")[1].split(" ");
                         List<String> stringList = new ArrayList<>();
+                        if (TalkBubbles.CONFIG.maxUUIDWordCheck != 0 && string.length > TalkBubbles.CONFIG.maxUUIDWordCheck) {
+                            return;
+                        }
                         String stringCollector = "";
 
                         int width = 0;
@@ -99,35 +103,5 @@ public class ChatHudMixin {
             }
         }
 
-    }
-
-    private String extractSender(Text text) {
-        String[] words = text.getString().split("(§.)|[^\\w§]+");
-        String[] parts = text.toString().split("key='");
-
-        if (parts.length > 1) {
-            String translationKey = parts[1].split("'")[0];
-            if (translationKey.contains("commands")) {
-                return "";
-            } else if (translationKey.contains("advancement")) {
-                return "";
-            }
-        }
-
-        for (int i = 0; i < words.length; i++) {
-            if (words[i].isEmpty()) {
-                continue;
-            }
-            if (TalkBubbles.CONFIG.maxUUIDWordCheck != 0 && i >= TalkBubbles.CONFIG.maxUUIDWordCheck) {
-                return "";
-            }
-
-            UUID possibleUUID = this.client.getSocialInteractionsManager().getUuid(words[i]);
-            if (possibleUUID != Util.NIL_UUID) {
-                return words[i];
-            }
-        }
-
-        return "";
     }
 }

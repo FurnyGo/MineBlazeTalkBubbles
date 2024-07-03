@@ -1,0 +1,19 @@
+{
+  "text.autoconfig.talkbubbles.title": "Настройка Talk Bubbles",
+  "text.autoconfig.talkbubbles.option.chatColor": "Цвет сообщения",
+  "text.autoconfig.talkbubbles.option.chatTime": "Время отображения сообщения (в тиках)",
+  "text.autoconfig.talkbubbles.option.backgroundOpacity": "Прозрачность фона",
+  "text.autoconfig.talkbubbles.option.maxChatWidth": "Ширина сообщения",
+  "text.autoconfig.talkbubbles.option.chatHeight": "Высота сообщения",
+  "text.autoconfig.talkbubbles.option.chatRange": "Расстояние для сообщения",
+  "text.autoconfig.talkbubbles.option.backgroundRed": "Настройка красного для фона",
+  "text.autoconfig.talkbubbles.option.backgroundGreen": "Настройка зелёного для фона",
+  "text.autoconfig.talkbubbles.option.backgroundBlue": "Настройка синего для фона",
+  "text.autoconfig.talkbubbles.option.showOwnBubble": "Показывать собственные сообщения",
+  "text.autoconfig.talkbubbles.option.maxUUIDWordCheck": "Максимальное количество слов",
+  "text.autoconfig.talkbubbles.option.getLocal": "Показывать сообщения из локального чата",
+  "text.autoconfig.talkbubbles.option.getGlobal": "Показывать сообщения из глобального чата",
+
+  "modmenu.summaryTranslation.talkbubbles": "Мод, который добавляет сообщения над головой.",
+  "modmenu.descriptionTranslation.talkbubbles": "Мод, который добавляет сообщения над головой."
+}
