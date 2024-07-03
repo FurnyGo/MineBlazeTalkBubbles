@@ -2,6 +2,10 @@
 
 TalkBubbles adds bubbles above your head when texting other players.
 
+## MineBlazeEdition
+
+Includes some fixes, russian language, detects only messages on Mineblaze, but works good
+
 ### Installation
 
 TalkBubbles is a mod built for the [Fabric Loader](https://fabricmc.net/). It requires [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) and [Cloth Config API](https://www.curseforge.com/minecraft/mc-mods/cloth-config) to be installed separately; all other dependencies are installed with the mod.
